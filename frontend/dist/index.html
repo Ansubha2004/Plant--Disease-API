@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Plant Disease Detection | Smart Crop Health AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="AI-powered web app for plant disease detection using deep learning and PlantVillage dataset." />
+    <meta name="theme-color" content="#218c74" />
+    <link rel="icon" href="/icon.ico" type="image/x-icon">
+    <!-- Professional Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <!-- For smooth UI animations -->
+    <style>
+      body {
+        background: linear-gradient(120deg, #f6f8fa 0%, #ceece8 100%);
+        margin: 0;
+        font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        min-height: 100vh;
+      }
+      #root {
+        z-index: 2;
+      }
+      .watermark {
+        position: fixed;
+        bottom: 14px;
+        right: 24px;
+        font-size: 14px;
+        color: #218c74ad;
+        font-family: 'Montserrat', Arial, sans-serif;
+        opacity: 0.8;
+        z-index: 99;
+        pointer-events: none;
+      }
+      .header-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 160px;
+        background: linear-gradient(90deg, #218c74 60%, #2dc09b 100%);
+        opacity: 0.09;
+        z-index: 0;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-604ef432.js"></script>
+    <link rel="stylesheet" href="/assets/index-2aa0f457.css">
+  </head>
+  <body>
+    <div class="header-bg"></div>
+    <div id="root"></div>
+    <div class="watermark">
+      Made with AI &hearts; | IEM EE 3rd Year Project | Powered by React, FastAPI, PlantVillage
+    </div>
+    
+  </body>
+</html>
