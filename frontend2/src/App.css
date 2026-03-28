@@ -1,2 +1,12 @@
 @import "tailwindcss";
 
+@layer components{
+  .linkanimate
+  {
+    @apply text-[#064E3B]  underline underline-offset-8  transition-all duration-50 ease-in-out decoration-2 ;
+  }
+  .buttonanimate
+  {
+    @apply hover:opacity-[0.9] active:scale-[0.97] transition-all ease-in-out;
+  }
+}
