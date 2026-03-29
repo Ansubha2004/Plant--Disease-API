@@ -1,4 +1,3 @@
-import tensorflow as tf
 import json
 import numpy as np
 from app.config import MODEL_PATH, CLASS_NAMES_PATH
@@ -19,6 +18,7 @@ _model = None
 def get_model():
     global _model
     if _model is None:
+        import tensorflow as tf
         print("Loading TensorFlow model...")
         _model = tf.keras.models.load_model(MODEL_PATH)
         print("Model loaded successfully.")
