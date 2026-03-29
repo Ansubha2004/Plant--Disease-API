@@ -7,7 +7,7 @@
   }
   .buttonanimate
   {
-    @apply hover:opacity-[0.9] active:scale-[0.97] transition-all ease-in-out;
+    @apply hover:opacity-[0.9] active:scale-[0.97] transition-all ease-in-out cursor-pointer;
   }
 }
 

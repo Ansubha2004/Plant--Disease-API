@@ -19,7 +19,7 @@ function Home() {
         <Hometext />
         <br />
         <br />
-        <div className="px-30 w-full flex justify-center  gap-6 mb-20 ">
+        <div className="px-30 w-full flex justify-center  gap-6  ">
           <div className="w-2/3  py-[60px] border-dashed rounded-[10px] border-[#C1C8C24D] bg-white/70 border-[3px] flex flex-col justify-center items-center backdrop-blur-sm">
             <img src={imageuploadlogo} className="h-20" />
             <p className="text-[1.3rem] font-[Noto_Serif] text-[#012D1D] my-2">
@@ -61,7 +61,9 @@ function Home() {
               }
             </div>
           </div>
+          
         </div>
+        <p className="text-center text-white my-8 text-[1.2rem] text-shadow-[2px_2px_5px_rgba(0,0,0)] font-[Manrope]  ">Trained using 60,000+ data, to give you accurate disease for your plant.</p>
       </div>
     </section>
   );
