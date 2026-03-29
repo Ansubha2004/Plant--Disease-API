@@ -1,9 +1,28 @@
 import tensorflow as tf
 import json
+import numpy as np
 from app.config import MODEL_PATH, CLASS_NAMES_PATH
 from app.recommend import get_recommendation
 import serial
 import time
+
+# Load class names at startup (lightweight - just a JSON file)
+try:
+    with open(CLASS_NAMES_PATH, 'r') as f:
+        class_names = json.load(f)
+except Exception as e:
+    raise RuntimeError(f"Could not load class names: {e}")
+
+# Lazy load model - only loaded on first prediction request
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        print("Loading TensorFlow model...")
+        _model = tf.keras.models.load_model(MODEL_PATH)
+        print("Model loaded successfully.")
+    return _model
 
 
 def signal_to_arduino(health_label):
@@ -17,30 +36,26 @@ def signal_to_arduino(health_label):
         print(f"Error communicating with Arduino: {e}")
 
 
-try:
-    with open(CLASS_NAMES_PATH, 'r') as f:
-        class_names = json.load(f)
-except Exception as e:
-    raise RuntimeError(f"Could not load class names: {e}")
-
-model = tf.keras.models.load_model(MODEL_PATH)
-
-
 def predict_image(image_array):
+    model = get_model()  # loads only on first call
     predictions = model.predict(image_array)
     predicted_class_idx = predictions.argmax(axis=1)[0]
     predicted_class_label = class_names[predicted_class_idx]
 
-    recommended_cure = get_recommendation(predicted_class_label)
-
-    print("DEBUG predict_image output:", recommended_cure, predicted_class_label)
-
+    health_percentage = round(float(np.max(predictions)) * 100, 2)
+    recommendation = get_recommendation(predicted_class_label)
     health_label = 1 if "healthy" in predicted_class_label.lower() else 0
+    signal = "HEALTHY" if health_label == 1 else "DISEASED"
+
     signal_to_arduino(health_label)
 
+    print(f"DEBUG: class={predicted_class_label}, confidence={health_percentage}%, signal={signal}")
+
     return {
-        "class_index": int(predicted_class_idx),
-        "class_name": predicted_class_label,
-        "recommendation": recommended_cure,
-        "health_label": health_label
+        "class_index":       int(predicted_class_idx),
+        "class_name":        predicted_class_label,
+        "health_percentage": health_percentage,
+        "health_label":      health_label,
+        "signal":            signal,
+        "recommendation":    recommendation,
     }
