@@ -54,6 +54,12 @@ input:-webkit-autofill {
   font-weight: 400;
   font-style: normal;
 }
+.manrope1 {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 
 .notoserif {
   font-family: "Noto Serif", serif;

@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 function box1() {
   return (
-    <div className="relative mt-[100px] px-15 rounded-[30px] box-border bg-[#E6F4EC]/90 bg-blur-sm flex flex-col justify-center items-start w-full h-[60vh]  ">
+    <div className="relative mt-[120px] px-15 rounded-[30px] box-border bg-[#E6F4EC]/90 bg-blur-sm flex flex-col justify-center items-start w-full h-[60vh]  ">
       <p className="italic leading-[60px] text-[#012D1D99] notoserif text-[2.9rem] ">
         Cultivating <span className="text-[#012D1D]">Precision Care</span>
       </p>

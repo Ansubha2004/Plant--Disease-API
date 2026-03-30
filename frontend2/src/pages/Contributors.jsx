@@ -1,13 +1,13 @@
 import React from "react";
-import Homebg from "../components/Homebg.jsx";
 import ansubha from "../assets/members/ansubha.png";
 import adipto from "../assets/members/adipto.png";
 import anushka from "../assets/members/anushka.png";
 import anish from "../assets/members/anish.png";
 import manoj from "../assets/members/manoj.png";
 import mrinmoy from "../assets/members/mrinmoy.png";
-import clsx from "clsx"
-import Box1 from "../components/box1.jsx"
+import clsx from "clsx";
+import Box1 from "../components/box1.jsx";
+import bg from "../assets/bg3.png"
 
 function Contributors() {
   const members = [
@@ -57,10 +57,34 @@ function Contributors() {
 
   return (
     <section className="relative w-full z-[1] h-auto">
-      <Homebg />
+     
       <div className="relative w-screen px-[5%] box-border   h-auto z-[5]">
         <Box1 />
+        
+        
+        <div className="w-full translate-y-[75px] text-center flex flex-col gap-3 items-center">
+          <p className="italic leading-[60px] text-[#012D1D99] notoserif text-[2.9rem] ">
+            Our <span className="text-[#012D1D]">Team Members</span>
+          </p>
+          <div className="bg-[#012D1D] h-[4px] w-37"></div>
+        </div>
+        <br />
+        <br />
+        <div className="flex translate-y-[72px] w-full flex-wrap justify-between items-center  ">
+          {
+            members.map((member,index)=>(
+              <div key={index} className="w-[26%] scale-[0.9] ">
+                <img src={member.image} className="w-full" />
+                <p className="uppercase text-[0.7rem] manrope1 my-3 translate-y-1  leading-[10px]  text-[#406749]">{member.role}</p>
+                <p className="notoserif text-[1.5rem] text-[#012D1D] ">{member.name}</p>
+                <p className="manrope text-[#414844] text-[0.7rem] leading-[30px]">{member.description}</p>
+              </div>
+            ))
+          }
+        </div>
+        
       </div>
+      <img src={bg} className="" />
     </section>
   );
 }
