@@ -83,10 +83,10 @@ function Home({setUploaded,setresult}) {
               browse your local files.
             </p>
             <br />
-            <div className="flex justify-center items-center gap-3 mt-2">
-              <div className="flex  gap-2 bg-[#E7E8E7] pr-3 pl-1 py-1 box-border rounded-lg items-center">
+            <div className="flex justify-center items-center  px-1   gap-3 mt-2">
+              <div className="flex  gap-2 bg-[#E7E8E7] px-1   overflow-x-hidden whitespace-nowrap w-60 py-1 border-box  rounded-lg items-center">
                 <div className="flex  items-center">
-                  <label className="bg-[#012D1D66] text-[#012D1D] py-1 px-3 rounded-lg buttonanimate cursor-pointer manrope text-[0.9rem] manrope">
+                  <label className="bg-[#012D1D66] text-[#012D1D] py-1 px-2 rounded-lg buttonanimate cursor-pointer manrope text-[0.9rem] manrope">
                     Choose File
                     <input
                       type="file"
@@ -101,7 +101,7 @@ function Home({setUploaded,setresult}) {
                     />
                   </label>
                 </div>
-                <div className="text-[0.9rem] manrope">
+                <div className="text-[0.9rem] w-[80%] manrope overflow-x-auto hide-scrollbar">
                   {selectedFile ? selectedFile.name : "No image selected"}
                 </div>
               </div>
