@@ -7,7 +7,7 @@ function Homebg() {
     <div id="background" className="fixed w-screen h-screen bg-[#F9F9F8] text-white">
         <img src={bg1} className="absolute bottom-0" />
         <img src={bg2} className="absolute top-20 scale-[0.79]" />
-        <img src="" alt="" />
+
       </div>
   )
 }

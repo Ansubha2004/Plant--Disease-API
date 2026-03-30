@@ -8,8 +8,9 @@ import sample1 from "../assets/sample1.png";
 import sample2 from "../assets/sample2.png";
 import sample3 from "../assets/sample3.png";
 import sample4 from "../assets/sample4.png";
+import {success,failure} from "../utils/notify.js";
 
-function Home() {
+function Home({setUploaded,setresult}) {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -22,15 +23,17 @@ function Home() {
     if (file) {
       setSelectedFile(file);
       setPreview(URL.createObjectURL(file));
+      setUploaded(true)
       return;
     }
     setSelectedFile(null);
     setPreview(null);
+    setUploaded(false)
   };
 
   const handleAnalyze = async () => {
     if (!selectedFile) {
-      alert("Please select an image first.");
+      failure("Please select an image first.");
       return;
     }
     setLoading(true);
@@ -43,13 +46,19 @@ function Home() {
         body: formData,
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Prediction failed");
+      if (!response.ok) 
+        {
+          setresult(false)
+          throw new Error(data.error || "Prediction failed");}
+      
 
       // Pass the whole response to the report page
+      setresult(true)
       navigate("/report", { state: { diagnosis: data, preview } });
     } catch (error) {
       console.error("Error:", error);
-      alert("Failed to analyze image. Please try again.");
+      setresult(false)
+      failure("Failed to analyze image. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -85,6 +94,7 @@ function Home() {
                       onClick={() => {
                         setSelectedFile(null);
                         setPreview(null);
+                        setUploaded(false);
                       }}
                       onChange={handleFileChange}
                       className="hidden"

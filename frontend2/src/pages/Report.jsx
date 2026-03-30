@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import {useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { HeartPulse, ShieldPlus, TriangleAlert, Send, Leaf } from "lucide-react";
 import clsx from "clsx";
+import {success,failure} from "../utils/notify.js"
 
 function Report() {
   const location = useLocation();
@@ -11,15 +13,10 @@ function Report() {
   const [input, setInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
   const messagesEndRef = useRef(null);
-
+  const navigate=useNavigate()
   // If no diagnosis, show fallback
-  if (!diagnosis) {
-    return (
-      <div className="p-10 text-center">
-        <p>No diagnosis data. Please go back and upload an image.</p>
-      </div>
-    );
-  }
+  if (!diagnosis) 
+    return
 
   // Extract fields from backend response
   const {
