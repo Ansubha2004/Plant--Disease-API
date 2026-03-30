@@ -56,9 +56,9 @@ function Contributors() {
   ];
 
   return (
-    <section className="relative w-full z-[1] h-auto">
+    <section className="relative w-full bg-[#F9F9F8] z-[1] h-auto">
      
-      <div className="relative w-screen px-[5%] box-border   h-auto z-[5]">
+      <div className="relative w-screen px-[5%] box-border    h-auto z-[5]">
         <Box1 />
         
         

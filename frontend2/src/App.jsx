@@ -14,7 +14,7 @@ function App() {
   const [result,setresult]=useState(false);
   return (
     <>
-      <div className="relative w-screen h-screen min-h-screen overflow-x-hidden">
+      <div className=" bg-[#F9F9F8] relative w-screen h-screen min-h-screen overflow-x-hidden">
         <Navbar uploaded={uploaded} result={result} setUploaded={setUploaded} />
         <Routes>
           <Route path="/" element={<Home setUploaded={setUploaded} setresult={setresult} />} />
