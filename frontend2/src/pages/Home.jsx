@@ -54,6 +54,7 @@ function Home({setUploaded,setresult}) {
 
       // Pass the whole response to the report page
       setresult(true)
+      success("Successful Health Analysis Of Plant");
       navigate("/report", { state: { diagnosis: data, preview } });
     } catch (error) {
       console.error("Error:", error);
