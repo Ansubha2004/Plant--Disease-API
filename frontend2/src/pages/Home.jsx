@@ -22,7 +22,10 @@ function Home() {
     if (file) {
       setSelectedFile(file);
       setPreview(URL.createObjectURL(file));
+      return;
     }
+    setSelectedFile(null);
+    setPreview(null);
   };
 
   const handleAnalyze = async () => {
@@ -60,28 +63,42 @@ function Home() {
         <br />
         <br />
         <div className="px-30 w-full flex justify-center gap-6">
-          <div className="w-2/3 py-[60px] border-dashed rounded-[10px] border-[#C1C8C24D] bg-white/70 border-[3px] flex flex-col justify-center items-center backdrop-blur-sm">
+          <div className="w-2/3 py-[60px] border-dashed rounded-[32px] border-[#C1C8C24D] bg-white/70 border-[5px] flex flex-col justify-center items-center backdrop-blur-sm">
             <img src={imageuploadlogo} className="h-20" alt="upload" />
-            <p className="text-[1.3rem] font-[Noto_Serif] text-[#012D1D] my-2">
+            <p className="text-[1.3rem] notoserif text-[#012D1D] my-2">
               Upload leaf imagery
             </p>
-            <p className="text-center text-[0.9rem] font-[Manrope] text-[#414844] leading-4">
+            <p className="text-center text-[0.9rem] manrope text-[#414844] leading-4">
               Drag and drop high-resolution photos or
               <br />
               browse your local files.
             </p>
             <br />
-            <div className="flex justify-center gap-2 cursor-pointer mt-2">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="bg-[#E7E8E7] text-[#012D1D] px-3 py-2 rounded-lg buttonanimate"
-              />
+            <div className="flex justify-center items-center gap-3 mt-2">
+              <div className="flex  gap-2 bg-[#E7E8E7] pr-3 pl-1 py-1 box-border rounded-lg items-center">
+                <div className="flex  items-center">
+                  <label className="bg-[#012D1D66] text-[#012D1D] py-1 px-3 rounded-lg buttonanimate cursor-pointer manrope text-[0.9rem] manrope">
+                    Choose File
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onClick={() => {
+                        setSelectedFile(null);
+                        setPreview(null);
+                      }}
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+                <div className="text-[0.9rem] manrope">
+                  {selectedFile ? selectedFile.name : "No image selected"}
+                </div>
+              </div>
               <button
                 onClick={handleAnalyze}
                 disabled={loading}
-                className="flex gap-2 items-center bg-[#012D1D] text-white px-7 py-2 rounded-lg buttonanimate"
+                className="flex gap-2 manrope items-center bg-[#012D1D] text-white text-[0.9rem] px-7 py-2 rounded-lg buttonanimate"
               >
                 <img src={camera} className="h-[1rem]" alt="camera" />
                 {loading ? "Analyzing..." : "Analyse Image"}
@@ -98,8 +115,8 @@ function Home() {
               Supported: JPG, PNG, HEIC (Max 15MB)
             </p>
           </div>
-          <div className="flex-1 flex flex-col box-border p-[30px] rounded-[15px] bg-[#F3F4F395] backdrop-blur-sm">
-            <p className="font-[Noto_serif] text-[1.2rem] text-[#012D1D]">
+          <div className="flex-1 flex flex-col box-border p-[30px] rounded-[32px] bg-[#F3F4F395] backdrop-blur-sm">
+            <p className="notoserif text-[1.2rem] text-[#012D1D]">
               Test the system
             </p>
             <p className="text-[#414844] text-[0.8rem] leading-4">
@@ -121,8 +138,9 @@ function Home() {
             </div>
           </div>
         </div>
-        <p className="text-center text-white my-8 text-[1.2rem] text-shadow-[2px_2px_5px_rgba(0,0,0)] font-[Manrope]">
-          Trained using 60,000+ data, to give you accurate disease for your plant.
+        <p className="text-center text-white my-8 text-[1.2rem] text-shadow-[2px_2px_15px_rgba(0,0,0,0.25)] font-[500] manrope">
+          Trained using 54,000+ data, to give you accurate disease for your
+          plant.
         </p>
       </div>
     </section>

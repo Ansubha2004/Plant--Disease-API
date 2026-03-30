@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="px-5 py-2 bg-[#F9F9F8] fixed top-0 z-[4] flex justify-between items-center h-auto w-full  ">
       <img src={logo} className="h-10" />
-      <div className="text-[#57534E] text-[1rem] gap-10 flex">
+      <div className="text-[#57534E] text-[1rem] gap-10 flex manrope">
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? "linkanimate" : "")}
@@ -17,7 +17,7 @@ function Navbar() {
         <NavLink to="/work" className={({ isActive }) => (isActive ? "linkanimate" : "")}>How It Works</NavLink>
         <NavLink to="/contributors" className={({ isActive }) => (isActive ? "linkanimate" : "")}>Contributors</NavLink>
       </div>
-      <NavLink to="/report" className="text-[1rem] px-8 rounded-[12px] text-white py-1 bg-[#012D1D] buttonanimate">
+      <NavLink to="/report" className="manrope text-[1rem] px-8 rounded-[12px] text-white py-1 bg-[#012D1D] buttonanimate">
         Report
       </NavLink>
     </nav>
