@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Report from "./pages/Report";
+import Contributors from "./pages/Contributors"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home setUploaded={setUploaded} setresult={setresult} />} />
           <Route path="/report" element={<Report  />} />
+          <Route path="/contributors" element={<Contributors/>} />
         </Routes>
       </div>
       <ToastContainer />

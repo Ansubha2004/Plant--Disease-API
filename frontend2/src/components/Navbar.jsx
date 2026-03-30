@@ -29,7 +29,7 @@ function Navbar({uploaded,setUploaded,result}) {
         >
           Home
         </NavLink>
-        <NavLink to="/work" className={({ isActive }) => (isActive ? "linkanimate" : "")}>How It Works</NavLink>
+        
         <NavLink to="/contributors" className={({ isActive }) => (isActive ? "linkanimate" : "")}>Contributors</NavLink>
       </div>
       <NavLink onClick={handleClick} to={uploaded && result ?"/report":"/"} className={clsx("manrope text-[1rem] px-8 rounded-[12px] text-white py-1 bg-[#012D1D] ",uploaded&&result?"cursor-pointer buttonanimate":"cursor-not-allowed")}>
