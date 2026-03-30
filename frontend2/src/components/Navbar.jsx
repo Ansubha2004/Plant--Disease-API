@@ -6,7 +6,7 @@ import clsx from "clsx";
 function Navbar() {
   return (
     <nav className="px-5 py-2 bg-[#F9F9F8] fixed top-0 z-[4] flex justify-between items-center h-auto w-full  ">
-      <img src={logo} className="h-10" />
+      <img src={logo} className="h-12" />
       <div className="text-[#57534E] text-[1rem] gap-10 flex manrope">
         <NavLink
           to="/"
