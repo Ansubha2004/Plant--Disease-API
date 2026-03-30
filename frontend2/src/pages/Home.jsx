@@ -8,9 +8,11 @@ import sample1 from "../assets/sample1.png";
 import sample2 from "../assets/sample2.png";
 import sample3 from "../assets/sample3.png";
 import sample4 from "../assets/sample4.png";
-import {success,failure} from "../utils/notify.js";
+import { success, failure } from "../utils/notify.js";
+import clsx from "clsx";
+import {CirclePlus} from "lucide-react";
 
-function Home({setUploaded,setresult}) {
+function Home({ setUploaded, setresult }) {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -23,12 +25,12 @@ function Home({setUploaded,setresult}) {
     if (file) {
       setSelectedFile(file);
       setPreview(URL.createObjectURL(file));
-      setUploaded(true)
+      setUploaded(true);
       return;
     }
     setSelectedFile(null);
     setPreview(null);
-    setUploaded(false)
+    setUploaded(false);
   };
 
   const handleAnalyze = async () => {
@@ -46,24 +48,30 @@ function Home({setUploaded,setresult}) {
         body: formData,
       });
       const data = await response.json();
-      if (!response.ok) 
-        {
-          setresult(false)
-          throw new Error(data.error || "Prediction failed");}
-      
+      if (!response.ok) {
+        setresult(false);
+        throw new Error(data.error || "Prediction failed");
+      }
 
       // Pass the whole response to the report page
-      setresult(true)
+      setresult(true);
       success("Successful Health Analysis Of Plant");
       navigate("/report", { state: { diagnosis: data, preview } });
     } catch (error) {
       console.error("Error:", error);
-      setresult(false)
+      setresult(false);
       failure("Failed to analyze image. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
+  const closeimage=()=>{
+    setPreview(null)
+    setSelectedFile(null)
+    setresult(false)
+    setUploaded(false)
+  }
 
   return (
     <section className="relative w-full z-[1] h-auto">
@@ -72,7 +80,7 @@ function Home({setUploaded,setresult}) {
         <Hometext />
         <br />
         <br />
-        <div className="px-30 w-full flex justify-center gap-6">
+        <div className={clsx("px-30 w-full flex justify-center gap-6",preview?"items-start":"")}>
           <div className="w-2/3 py-[60px] border-dashed rounded-[32px] border-[#C1C8C24D] bg-white/70 border-[5px] flex flex-col justify-center items-center backdrop-blur-sm">
             <img src={imageuploadlogo} className="h-20" alt="upload" />
             <p className="text-[1.3rem] notoserif text-[#012D1D] my-2">
@@ -116,11 +124,14 @@ function Home({setUploaded,setresult}) {
               </button>
             </div>
             {preview && (
-              <img
-                src={preview}
-                alt="Preview"
-                className="mt-4 h-32 rounded object-cover"
-              />
+              <div className="relative ">
+                <img
+                  src={preview}
+                  alt="Preview"
+                  className="mt-4 h-32 rounded object-cover"
+                />
+                <CirclePlus onClick={closeimage} strokeWidth={2} color="white" className="absolute top-5 right-2  rotate-45 buttonanimate" />
+              </div>
             )}
             <p className="mt-3 uppercase text-[0.6rem] text-[#717973]">
               Supported: JPG, PNG, HEIC (Max 15MB)
