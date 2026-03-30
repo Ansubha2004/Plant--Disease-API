@@ -35,6 +35,7 @@ function Navbar({uploaded,setUploaded,result}) {
       <NavLink onClick={handleClick} to={uploaded && result ?"/report":"/"} className={clsx("manrope text-[1rem] px-8 rounded-[12px] text-white py-1 bg-[#012D1D] ",uploaded&&result?"cursor-pointer buttonanimate":"cursor-not-allowed")}>
         Report
       </NavLink>
+      
     </nav>
   );
 }

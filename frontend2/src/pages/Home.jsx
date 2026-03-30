@@ -81,7 +81,7 @@ function Home({ setUploaded, setresult }) {
         <br />
         <br />
         <div className={clsx("px-30 w-full flex justify-center gap-6",preview?"items-start":"")}>
-          <div className="w-2/3 py-[60px] border-dashed rounded-[32px] border-[#C1C8C24D] bg-white/70 border-[5px] flex flex-col justify-center items-center backdrop-blur-sm">
+          <div id="product" className="w-2/3 py-[60px] border-dashed rounded-[32px] border-[#C1C8C24D] bg-white/70 border-[5px] flex flex-col justify-center items-center backdrop-blur-sm">
             <img src={imageuploadlogo} className="h-20" alt="upload" />
             <p className="text-[1.3rem] notoserif text-[#012D1D] my-2">
               Upload leaf imagery
