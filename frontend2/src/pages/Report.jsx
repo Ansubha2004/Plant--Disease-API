@@ -14,6 +14,9 @@ function Report() {
   const [chatLoading, setChatLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const navigate=useNavigate()
+
+
+
   // If no diagnosis, show fallback
   if (!diagnosis) 
     return
@@ -78,17 +81,14 @@ function Report() {
     if (e.key === "Enter") sendMessage();
   };
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
+  
   return (
-    <section id="report" className="px-[6%] pt-20 pb-20 box-border bg-[#F9F9F8] relative w-full max-w-full min-w-0 min-h-screen z-[2] h-auto overflow-x-hidden">
+    <section  id="report" className="px-[6%] pt-20 pb-20 box-border bg-[#F9F9F8] relative w-full max-w-full min-w-0 min-h-screen z-[2] h-auto overflow-x-hidden">
       <div className="flex w-full h-auto flex-col gap-6 sm:flex-row sm:justify-between sm:items-end">
-        <div className="min-w-0">
+        <div id="healthstatus" className="min-w-0">
           <p className="text-[0.8rem] text-[#414844] intrumentsans mb-2">DIAGNOSTIC REPORT</p>
           <p className="text-[2rem] leading-[1.05] sm:text-[2.75rem] sm:leading-none md:text-[3.6rem] md:leading-[3.6rem] text-[#012D1D] notoserif break-words">
-            {disease}
+            {disease.replaceAll("_"," ")}
           </p>
           <p className="text-[2rem] leading-[1.05] sm:text-[2.75rem] sm:leading-none md:text-[3.6rem] md:leading-[3.6rem] notoserif italic text-[#406749] break-words">
             Detected
@@ -100,14 +100,14 @@ function Report() {
         </div>
       </div>
       <div className="h-8 sm:h-10 md:h-12" aria-hidden />
-      <div className="flex w-full h-auto flex-col lg:flex-row gap-8 lg:gap-10 lg:justify-between">
-        <div className="relative w-full lg:w-2/5 shrink-0">
+      <div className="flex w-full h-auto flex-col lg:flex-row gap-8 lg:gap-10 lg:justify-between ">
+        <div className="relative w-full lg:w-2/5 shrink-0 rounded-[16px] overflow-hidden">
           <img
             src={preview || "https://via.placeholder.com/400"}
             alt="Uploaded leaf"
-            className="w-full rounded-[12px] lg:rounded-none object-cover max-h-[min(55vh,420px)] lg:max-h-none"
+            className="w-full h-full rounded-[12px] lg:rounded-none object-cover max-h-[min(55vh,420px)] lg:max-h-none"
           />
-          <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 text-[0.65rem] sm:text-[0.7rem] border border-[#012D1D] py-1 px-2.5 sm:px-3 rounded-full z-[2] bg-[#FFFFFFE5] text-[#012D1D] text-center manrope">
+          <div className="absolute top-3 left-3  sm:left-5 text-[0.65rem] sm:text-[0.7rem] border border-[#012D1D] py-1 px-2.5 sm:px-3 rounded-full z-[2] bg-[#FFFFFFE5] text-[#012D1D] text-center manrope">
             AI Analysis
           </div>
         </div>
@@ -122,7 +122,7 @@ function Report() {
               </span>
             </div>
             <br className="hidden sm:block" />
-            <p className="text-[#414844] text-left sm:text-justify text-[0.85rem] sm:text-base leading-relaxed sm:leading-5 manrope whitespace-pre-line">
+            <p className="text-[#414844] text-left sm:text-justify text-[0.75rem]  leading-relaxed sm:leading-5 manrope whitespace-pre-line">
               {sections[pointer].paragraph}
             </p>
           </div>
@@ -173,7 +173,7 @@ function Report() {
               <div className="bg-[#E7E8E7] rounded-2xl rounded-bl-md px-4 py-2 text-sm">Typing...</div>
             </div>
           )}
-          <div ref={messagesEndRef} />
+          <div />
         </div>
         <div className="p-3 sm:p-4 md:px-8 flex gap-2 shrink-0 bg-white">
           <input
