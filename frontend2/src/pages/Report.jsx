@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { HeartPulse, ShieldPlus, TriangleAlert, Send, Leaf } from "lucide-react";
+import { HeartPulse, ShieldPlus, TriangleAlert, Send, Leaf ,CircleCheckBig} from "lucide-react";
 import clsx from "clsx";
 import {success,failure} from "../utils/notify.js"
 
@@ -36,17 +36,17 @@ function Report() {
     {
       heading: "Disease Analysis",
       paragraph: disease_analysis,
-      icon: <TriangleAlert size={40} color="#012D1D" />,
+      icon: healthScore<90?<TriangleAlert size={40} color="#012D1D" />:<CircleCheckBig size={40} color="#012D1D" />,
     },
     {
-      heading: "Immediate Treatment",
+      heading: healthScore<90?"Immediate Treatment":"Routine Monitoring",
       paragraph: immediate_treatment,
-      icon: <HeartPulse size={40} color="#012D1D" />,
+      icon: healthScore<90?<HeartPulse size={40} color="#012D1D" />:<ShieldPlus size={40} color="#012D1D" />
     },
     {
-      heading: "Preventive Measures",
+      heading: healthScore<90?"Preventive Measures":"Plant Care",
       paragraph: preventive_measures,
-      icon: <ShieldPlus size={40} color="#012D1D" />,
+      icon: healthScore<90?<ShieldPlus size={40} color="#012D1D" />:<Leaf size={40} color="#012D1D" />,
     },
   ];
 
@@ -91,7 +91,7 @@ function Report() {
             {disease.replaceAll("_"," ")}
           </p>
           <p className="text-[2rem] leading-[1.05] sm:text-[2.75rem] sm:leading-none md:text-[3.6rem] md:leading-[3.6rem] notoserif italic text-[#406749] break-words">
-            Detected
+            {healthScore<90?"Detected":"No Disease Detected"}
           </p>
         </div>
         <div className="bg-[#E7E8E7] py-2 px-4 sm:pl-4 sm:pr-2 box-border rounded-[15px] flex items-center gap-3 shrink-0 self-start sm:self-auto">
