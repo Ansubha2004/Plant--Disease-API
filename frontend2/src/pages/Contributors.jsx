@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ansubha from "../assets/members/ansubha.png";
 import adipto from "../assets/members/adipto.png";
 import anushka from "../assets/members/anushka.png";
@@ -9,7 +9,13 @@ import clsx from "clsx";
 import Box1 from "../components/box1.jsx";
 import bg from "../assets/bg3.png"
 
-function Contributors() {
+function Contributors({setUploaded}) {
+
+  useEffect(()=>{
+    setUploaded(false);
+  },[])
+
+  
   const members = [
     {
       name: "Adipto Purakayastha",

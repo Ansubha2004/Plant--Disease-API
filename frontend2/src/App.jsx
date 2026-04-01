@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home setUploaded={setUploaded} setresult={setresult} />} />
           <Route path="/report" element={<Report  />} />
-          <Route path="/contributors" element={<Contributors/>} />
+          <Route path="/contributors" element={<Contributors setUploaded={setUploaded} />} />
         </Routes>
       </div>
       <ToastContainer />
