@@ -96,7 +96,7 @@ function Report() {
         </div>
         <div className="bg-[#E7E8E7] py-2 px-4 sm:pl-4 sm:pr-2 box-border rounded-[15px] flex items-center gap-3 shrink-0 self-start sm:self-auto">
           <p className="text-[11px] sm:text-[12px] text-[#414844] manrope leading-tight whitespace-nowrap">HEALTH SCORE</p>
-          <p className="text-[#BA1A1A] text-[1.35rem] sm:text-[1.5rem] notoserif tabular-nums">{healthScore}%</p>
+          <p className={clsx("text-[1.35rem] sm:text-[1.5rem] notoserif tabular-nums",healthScore<80?"text-[#BA1A1A] ":"text-green-800")}>{healthScore}%</p>
         </div>
       </div>
       <div className="h-8 sm:h-10 md:h-12" aria-hidden />
